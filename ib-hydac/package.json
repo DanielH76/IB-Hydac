@@ -4,7 +4,12 @@
   "license": "MIT",
   "scripts": {},
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "helmet": "^5.1.1"
+  },
   "devDependencies": {
     "@nrwl/cli": "14.5.4",
     "@nrwl/js": "14.5.4",
