@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1>Testing live changes</h1>
+    <h1>Testing live changes test</h1>
   </div>
 </template>
 
