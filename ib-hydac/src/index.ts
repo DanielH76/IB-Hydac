@@ -7,7 +7,6 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 
-import * as userService from './users/user.service';
 import { userRouter } from './users/user.router';
 
 dotenv.config();

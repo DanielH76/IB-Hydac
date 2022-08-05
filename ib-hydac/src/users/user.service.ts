@@ -1,7 +1,6 @@
 // src/users/user.service.ts
 
 import { BaseEntity, Employee, Guest } from './user.interface';
-import { Employees } from './users.interface';
 import * as txtService from './txt.service';
 import { arrayBuffer } from 'stream/consumers';
 import { userRouter } from './user.router';
