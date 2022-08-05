@@ -88,4 +88,19 @@ import SupportIcon from './icons/IconSupport.vue';
     sustainability. You can help us by
     <a target="_blank" href="https://vuejs.org/sponsor/">becoming a sponsor</a>.
   </WelcomeItem>
+
+  <WelcomeItem>
+    <template #icon>
+      <SupportIcon />
+    </template>
+    <template #heading>Dette er en test for at se om det virker</template>
+
+    Dette er en hurtig test for at se, hvordan WelcomeItem komponentet virker.
+    <a target="_blank" href="http://164.90.233.124/">Link til min hjemmeside</a>
+  </WelcomeItem>
+
+
+</WelcomeItem>
+
+
 </template>
