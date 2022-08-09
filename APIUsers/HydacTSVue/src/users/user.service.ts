@@ -1,10 +1,7 @@
 // src/users/user.service.ts
 
 import { BaseEntity, Employee, Guest } from "./user.interface";
-import { Employees } from "./users.interface";
 import * as txtService from "./txt.service";
-import { arrayBuffer } from "stream/consumers";
-import { userRouter } from "./user.router";
 
 const employees: Employee[] = loadEmployees();
 
@@ -19,9 +16,8 @@ export function loadEmployees(): Employee[] {
   // employee to the EmployeeArray for each string
 
   for (let i = 0; i < empStrings.length; i++) {
-    let idtmp: number = parseInt(empStrings[i].split(",")[0]);
-    employeesToReturn[idtmp] = {
-      id: idtmp,
+    employeesToReturn[i] = {
+      id: parseInt(empStrings[i].split(",")[0]),
       name: empStrings[i].split(",")[1],
     };
   }
