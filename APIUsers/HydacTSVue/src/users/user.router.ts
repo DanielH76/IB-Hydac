@@ -48,8 +48,10 @@ userRouter.get("/:id", async (req: Request, res: Response) => {
 // CREATE EMPLOYEE
 
 userRouter.post("/", async (req: Request, res: Response) => {
+  const id: number = parseInt(crypto.randomUUID());
   try {
     const emp: Employee = req.body;
+    emp.id = id;
 
     const newEmp = UserService.createNew(emp);
 

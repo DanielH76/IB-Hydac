@@ -1,6 +1,6 @@
 // src/users/user.service.ts
 
-import { BaseEntity, Employee, Guest } from "./user.interface";
+import { BaseEntity, Employee } from "./user.interface";
 import * as txtService from "./txt.service";
 
 const employees: Employee[] = loadEmployees();
