@@ -1,5 +1,6 @@
 import { readFileSync, writeFileSync, promises as fsPromises } from "fs";
 import { join } from "path";
+import { Employee } from "./user.interface";
 
 /**
  * flags:
@@ -31,4 +32,25 @@ export function appendFile(filename: string, data: any): string {
   syncWriteFile(filename, newContent);
 
   return data;
+}
+
+export function updateFile(filename: string, empArray: Employee[]): string {
+  let stringToWrite: string = "";
+
+  for (let i = 0; i < empArray.length; i++) {
+    let idToCreate: string = "";
+    idToCreate =
+      i == 0
+        ? empArray[i].id.toString() + ","
+        : "\n" + empArray[i].id.toString() + ",";
+    let nameToCreate: string = empArray[i].name + ",";
+    let boolToCreate: string = String(empArray[i].isOnsite);
+
+    let stringsCombined: string = idToCreate.concat(nameToCreate, boolToCreate);
+
+    stringToWrite += stringsCombined;
+  }
+
+  syncWriteFile(filename, stringToWrite);
+  return stringToWrite;
 }
