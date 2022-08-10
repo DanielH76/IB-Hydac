@@ -1,6 +1,5 @@
-1, Daniel
-2, anielD
-3, nielDa
-4, ielDan
-5, Alex
-6, Test
+1,DanielH,false
+2,anielD,false
+3,nielDa,true
+4,ielDan,true
+5,elDani,false

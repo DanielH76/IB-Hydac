@@ -7,6 +7,7 @@ export interface BaseEntity {
 export interface Employee extends BaseEntity {
   id: number;
   name: string;
+  isOnsite: boolean;
 
   guests?: Guest[];
 }

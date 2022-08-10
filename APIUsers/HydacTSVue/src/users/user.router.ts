@@ -18,7 +18,7 @@ export const userRouter = express.Router();
  * Controller Definitions
  */
 
-// GET items
+// GET EMPLOYEES
 
 userRouter.get("/", async (req: Request, res: Response) => {
   try {
@@ -29,6 +29,7 @@ userRouter.get("/", async (req: Request, res: Response) => {
   }
 });
 
+// GET EMPLOYEE
 userRouter.get("/:id", async (req: Request, res: Response) => {
   const id: number = parseInt(req.params.id, 10);
   try {
@@ -44,6 +45,8 @@ userRouter.get("/:id", async (req: Request, res: Response) => {
   }
 });
 
+// CREATE EMPLOYEE
+
 userRouter.post("/", async (req: Request, res: Response) => {
   try {
     const emp: Employee = req.body;
@@ -51,6 +54,41 @@ userRouter.post("/", async (req: Request, res: Response) => {
     const newEmp = UserService.createNew(emp);
 
     res.status(201).json(newEmp);
+  } catch {
+    res.status(500).send("Error 500");
+  }
+});
+
+// DELETE EMPLOYEE
+
+userRouter.delete("/:id", async (req: Request, res: Response) => {
+  const id = parseInt(req.params.id, 10);
+  try {
+    let isDeleted: boolean = UserService.removeEmployee(id);
+
+    if (isDeleted) {
+      return res.status(200).send("User is now deleted");
+    }
+  } catch {
+    res.status(500).send("Error 500");
+  }
+});
+
+// UPDATE EMPLOYEE
+
+userRouter.put("/:id", async (req: Request, res: Response) => {
+  const id = parseInt(req.params.id, 10);
+  let updatedEmployee = req.body;
+  updatedEmployee.id = id;
+
+  try {
+    let isUpdated: boolean = UserService.updateEmployee(updatedEmployee, id);
+
+    if (isUpdated) {
+      return res.status(200).send("User has been updated");
+    } else {
+      return res.status(404).send("Employee not found");
+    }
   } catch {
     res.status(500).send("Error 500");
   }
