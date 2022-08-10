@@ -99,6 +99,4 @@ export function updateEmployee(
   loadEmployees();
 
   return true;
-
-  // loadEmployees()
 }
