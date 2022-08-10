@@ -17,13 +17,11 @@ export function loadEmployees(): Employee[] {
 
   for (let i = 0; i < empStrings.length; i++) {
     let values: string[] = empStrings[i].split(",");
-    let stringValue: string = values[2];
-    let boolValue = /true/i.test(stringValue);
 
     employeesToReturn[i] = {
       id: parseInt(values[0]),
       name: values[1],
-      isOnsite: boolValue,
+      isOnsite: /true/i.test(values[2]),
     };
   }
 
@@ -48,9 +46,8 @@ export const findAll = (): Employee[] => {
 };
 
 export const find = (id: number): Employee => {
-  let empToFind: Employee = employees.find((x) => x.id == id) as Employee;
-  console.log(empToFind);
-  return empToFind;
+  // let empToFind: Employee = employees.find((x) => x.id == id) as Employee;
+  return employees.find((x) => x.id == id) as Employee;
 };
 
 export function removeEmployee(id: number): boolean {
