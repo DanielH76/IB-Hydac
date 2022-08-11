@@ -8,6 +8,8 @@ import * as UserService from "./user.service";
 
 import { Employee } from "./user.interface";
 
+import * as crypto from "crypto";
+
 /**
  * Router Definition
  */

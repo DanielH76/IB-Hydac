@@ -93,7 +93,6 @@ export function updateEmployee(
   // replace employee in array
 
   let index: number = tempEmployee.indexOf(employeeToUpdate);
-  console.log(employeeToUpdate);
   tempEmployee.splice(index, 1, employeeToUpdate);
 
   txtService.updateEmployeeFile("userStore.txt", tempEmployee);

@@ -57,3 +57,26 @@ export function updateEmployeeFile(
   syncWriteFile(filename, stringToWrite);
   return stringToWrite;
 }
+
+export function updateGuestFile(fileName: string, guestArray: Guest[]): string {
+  let stringToWrite: string = "";
+
+  for (let i = 0; i < guestArray.length; i++) {
+    let idToCreate: string = "";
+    idToCreate =
+      i == 0
+        ? guestArray[i].id.toString() + ","
+        : "\n" + guestArray[i].id.toString();
+    let nameToCreate: string = guestArray[i].name + ",";
+    let empIdToCreate: string = guestArray[i].employeeId.toString();
+
+    let stringsCombined: string = idToCreate.concat(
+      nameToCreate,
+      empIdToCreate
+    );
+
+    stringToWrite += stringsCombined;
+  }
+  syncWriteFile(fileName, stringToWrite);
+  return stringToWrite;
+}

@@ -14,8 +14,6 @@ export function loadGuests(): Guest[] {
 
   for (let i = 0; i < guestStrings.length; i++) {
     let values: string[] = guestStrings[i].split(",");
-    let stringValue: string = values[2];
-    let boolValue: boolean = /true/i.test(stringValue);
 
     guestsToReturn[i] = {
       id: parseInt(values[0]),
@@ -37,12 +35,68 @@ export function find(id: number): Guest {
 }
 
 export function getGuestsForEmployee(id: number): Guest[] {
-  let guestsToReturn: Guest[] = loadGuests();
+  let guestArray: Guest[] = loadGuests();
+  let guestsToReturn: Guest[] = new Array();
 
-  for (let i = 0; i < guestsToReturn.length; i++) {
-    if (guestsToReturn[i].id == id) {
-      guestsToReturn.push(guests[i]);
+  for (let i = 0; i < guestArray.length; i++) {
+    if (guestArray[i].employeeId == id) {
+      guestsToReturn.push(guestArray[i]);
     }
   }
   return guestsToReturn;
+}
+
+export function create(newGuest: Guest): Guest {
+  let idToCreate: string = "\n" + newGuest.id;
+  let nameToCreate: string = "," + newGuest.name;
+  let employeeIdToCreate: string = newGuest.employeeId.toString();
+
+  let stringsJoined: string = idToCreate.concat(
+    nameToCreate,
+    employeeIdToCreate
+  );
+
+  txtService.appendFile("guestStore.txt", stringsJoined);
+  loadGuests();
+  return newGuest;
+}
+
+export function remove(id: number): boolean {
+  let tempGuests: Guest[] = findAll();
+  let guestToFind: Guest = find(id);
+
+  if (!guestToFind) {
+    return false;
+  }
+
+  let index: number = tempGuests.indexOf(guestToFind);
+
+  tempGuests.splice(index, 1);
+
+  txtService.updateGuestFile("guestStore.txt", tempGuests);
+  loadGuests();
+
+  return true;
+}
+
+export function updateGuest(newGuestValues: Guest, id: number): boolean {
+  let tempGuests: Guest[] = findAll();
+
+  let guestToUpdate: Guest = find(id);
+
+  if (!guestToUpdate) {
+    return false;
+  }
+
+  guestToUpdate.name = newGuestValues.name;
+  guestToUpdate.employeeId = newGuestValues.employeeId;
+
+  let index: number = tempGuests.indexOf(guestToUpdate);
+  tempGuests.splice(index, 1, guestToUpdate);
+
+  txtService.updateGuestFile("guestStore.txt", tempGuests);
+
+  loadGuests();
+
+  return true;
 }

@@ -9,6 +9,7 @@ import helmet from "helmet";
 
 import * as userService from "./users/user.service";
 import { userRouter } from "./users/user.router";
+import { guestRouter } from "./users/guest.router";
 
 dotenv.config();
 
@@ -35,6 +36,8 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/users", userRouter);
+
+app.use("/api/guests", guestRouter);
 
 /**
  * Server Activation
