@@ -14,12 +14,13 @@ export function loadGuests(): Guest[] {
 
   for (let i = 0; i < guestStrings.length; i++) {
     let values: string[] = guestStrings[i].split(",");
+    let stringValue: string = values[2];
+    let boolValue: boolean = /true/i.test(stringValue);
 
     guestsToReturn[i] = {
       id: parseInt(values[0]),
       name: values[1],
-      isOnsite: /true/i.test(values[2]),
-      employeeId: parseInt(values[3]),
+      employeeId: parseInt(values[2]),
     };
   }
 

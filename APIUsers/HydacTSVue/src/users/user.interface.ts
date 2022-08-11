@@ -2,14 +2,15 @@
 
 export interface BaseEntity {
   id: number;
-  name: string;
-  isOnsite: boolean;
 }
 
 export interface Employee extends BaseEntity {
   guests?: Guest[];
+  name: string;
+  isOnsite: boolean;
 }
 
 export interface Guest extends BaseEntity {
+  name: string;
   employeeId: number;
 }

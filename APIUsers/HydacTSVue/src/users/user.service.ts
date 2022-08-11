@@ -18,10 +18,13 @@ export function loadEmployees(): Employee[] {
   for (let i = 0; i < empStrings.length; i++) {
     let values: string[] = empStrings[i].split(",");
 
+    let stringValue: string = values[2];
+    let boolValue: boolean = /true/i.test(stringValue);
+
     employeesToReturn[i] = {
       id: parseInt(values[0]),
       name: values[1],
-      isOnsite: /true/i.test(values[2]),
+      isOnsite: boolValue,
     };
   }
 
@@ -46,8 +49,8 @@ export const findAll = (): Employee[] => {
 };
 
 export const find = (id: number): Employee => {
-  // let empToFind: Employee = employees.find((x) => x.id == id) as Employee;
-  return employees.find((x) => x.id == id) as Employee;
+  let empToFind: Employee = employees.find((x) => x.id == id) as Employee;
+  return empToFind;
 };
 
 export function removeEmployee(id: number): boolean {
@@ -63,7 +66,7 @@ export function removeEmployee(id: number): boolean {
 
   tempEmployee.splice(index, 1);
 
-  txtService.updateFile("userStore.txt", tempEmployee);
+  txtService.updateEmployeeFile("userStore.txt", tempEmployee);
 
   loadEmployees();
 
@@ -84,17 +87,16 @@ export function updateEmployee(
   }
   // update employee with new values
 
-  employeeToUpdate.id = newEmployeeValues.id;
   employeeToUpdate.name = newEmployeeValues.name;
   employeeToUpdate.isOnsite = newEmployeeValues.isOnsite;
 
   // replace employee in array
 
   let index: number = tempEmployee.indexOf(employeeToUpdate);
-
+  console.log(employeeToUpdate);
   tempEmployee.splice(index, 1, employeeToUpdate);
 
-  txtService.updateFile("userStore.txt", tempEmployee);
+  txtService.updateEmployeeFile("userStore.txt", tempEmployee);
 
   loadEmployees();
 

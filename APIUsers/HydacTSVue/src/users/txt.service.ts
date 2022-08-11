@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync, promises as fsPromises } from "fs";
 import { join } from "path";
-import { Employee, BaseEntity } from "./user.interface";
+import { Employee, BaseEntity, Guest } from "./user.interface";
 
 /**
  * flags:
@@ -34,11 +34,12 @@ export function appendFile(filename: string, data: any): string {
   return data;
 }
 
-export function updateFile(filename: string, empArray: BaseEntity[]): string {
+export function updateEmployeeFile(
+  filename: string,
+  empArray: Employee[]
+): string {
   let stringToWrite: string = "";
 
-  // if(typeof empArray ==
-  console.log(typeof empArray);
   for (let i = 0; i < empArray.length; i++) {
     let idToCreate: string = "";
     idToCreate =
