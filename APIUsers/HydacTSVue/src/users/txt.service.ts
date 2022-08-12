@@ -47,9 +47,22 @@ export function updateEmployeeFile(
         ? empArray[i].id.toString() + ","
         : "\n" + empArray[i].id.toString() + ",";
     let nameToCreate: string = empArray[i].name + ",";
-    let boolToCreate: string = String(empArray[i].isOnsite);
-
-    let stringsCombined: string = idToCreate.concat(nameToCreate, boolToCreate);
+    let boolToCreate: string = String(empArray[i].isOnsite) + ",";
+    let moodToCreate: string = "";
+    if (empArray[i].mood == 0) {
+      moodToCreate = "Happy";
+    } else if (empArray[i].mood == 1) {
+      moodToCreate = "Sad";
+    } else if (empArray[i].mood == 2) {
+      moodToCreate = "Neutral";
+    } else if (empArray[i].mood == 3) {
+      moodToCreate = "ANGRY";
+    }
+    let stringsCombined: string = idToCreate.concat(
+      nameToCreate,
+      boolToCreate,
+      moodToCreate
+    );
 
     stringToWrite += stringsCombined;
   }
