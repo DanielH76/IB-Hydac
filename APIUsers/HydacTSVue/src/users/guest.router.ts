@@ -107,6 +107,9 @@ guestRouter.get("/employee/:id", async (req: Request, res: Response) => {
   const id: number = parseInt(req.params.id, 10);
   try {
     let guestsToReturn: Guest[] = GuestService.getGuestsForEmployee(id);
+    if (guestsToReturn.length <= 0) {
+      return res.status(200).send("Employee has no guests connected");
+    }
     if (guestsToReturn) {
       return res.status(200).send(guestsToReturn);
     } else {

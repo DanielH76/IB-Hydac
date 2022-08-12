@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync, promises as fsPromises } from "fs";
 import { join } from "path";
-import { Employee, BaseEntity, Guest } from "./user.interface";
+import { Employee, Guest } from "./user.interface";
 
 /**
  * flags:

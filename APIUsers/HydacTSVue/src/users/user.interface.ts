@@ -1,16 +1,14 @@
 // src/users/user.interface.ts
 
-export interface BaseEntity {
+export interface Employee {
   id: number;
-}
-
-export interface Employee extends BaseEntity {
   guests?: Guest[];
   name: string;
   isOnsite: boolean;
 }
 
-export interface Guest extends BaseEntity {
+export interface Guest {
+  id: number;
   name: string;
   employeeId: number;
 }
