@@ -54,7 +54,8 @@ guestRouter.get("/:id", async (req: Request, res: Response) => {
 // CREATE GUEST
 
 guestRouter.post("/", async (req: Request, res: Response) => {
-  const id: number = parseInt(crypto.randomUUID());
+  let id: number = new Date().valueOf();
+  console.log(id);
 
   try {
     const guest: Guest = req.body;

@@ -50,7 +50,7 @@ userRouter.get("/:id", async (req: Request, res: Response) => {
 // CREATE EMPLOYEE
 
 userRouter.post("/", async (req: Request, res: Response) => {
-  const id: number = parseInt(crypto.randomUUID());
+  const id: number = new Date().valueOf();
   console.log(id);
   try {
     let emp: Employee = req.body;
