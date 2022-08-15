@@ -104,4 +104,4 @@ dist
 .tern-port
 
 # UserStore
-APIUsers\HydacTSVue\src\users
+APIUsers\HydacTSVue\src\users\userStore.txt
