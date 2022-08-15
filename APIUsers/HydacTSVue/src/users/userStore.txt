@@ -1,4 +1,4 @@
-1,test,true,Sad
+1,test,true,ANGRY
 2,anielD,false,Happy
 3,nielDa,true,Sad
 4,Danielaaaa,true,Neutral

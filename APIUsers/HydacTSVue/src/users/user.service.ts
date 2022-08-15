@@ -20,25 +20,15 @@ export function loadEmployees(): Employee[] {
 
     let stringValue: string = values[2];
     let boolValue: boolean = /true/i.test(stringValue);
-    let moodString: string = "";
-
-    if (values[3] == "Happy") {
-      moodString = "Happy";
-    } else if (values[3] == "Sad") {
-      moodString = "Sad";
-    } else if (values[3] == "Neutral") {
-      moodString = "Neutral";
-    } else if (values[3] == "ANGRY") {
-      moodString = "ANGRY";
-    }
 
     employeesToReturn[i] = {
       id: parseInt(values[0]),
       name: values[1],
       isOnsite: boolValue,
-      mood: Mood[moodString as keyof typeof Mood],
+      mood: values[3] as Mood,
     };
   }
+  console.log(employeesToReturn);
   return employeesToReturn;
 }
 
@@ -46,7 +36,7 @@ export function createNew(newEmployee: Employee): string {
   let idToCreate: string = "\n" + newEmployee.id.toString() + ",";
   let nameToCreate: string = newEmployee.name + ",";
   let boolToCreate: string = String(newEmployee.isOnsite) + ",";
-  let moodToCreate: string = String(newEmployee.mood);
+  let moodToCreate: string = newEmployee.mood;
 
   let stringsJoined: string = idToCreate.concat(
     nameToCreate,
@@ -106,9 +96,7 @@ export function updateEmployee(
 
   employeeToUpdate.name = newEmployeeValues.name;
   employeeToUpdate.isOnsite = newEmployeeValues.isOnsite;
-  employeeToUpdate.mood =
-    Mood[String(newEmployeeValues.mood) as keyof typeof Mood];
-
+  employeeToUpdate.mood = newEmployeeValues.mood;
   // replace employee in array
 
   let index: number = tempEmployee.indexOf(employeeToUpdate);

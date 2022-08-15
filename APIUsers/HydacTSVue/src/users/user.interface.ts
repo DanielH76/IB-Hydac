@@ -14,9 +14,4 @@ export interface Guest {
   employeeId: number;
 }
 
-export enum Mood {
-  "Happy",
-  "Sad",
-  "Neutral",
-  "ANGRY",
-}
+export type Mood = "Happy" | "Sad" | "Neutral" | "ANGRY";
