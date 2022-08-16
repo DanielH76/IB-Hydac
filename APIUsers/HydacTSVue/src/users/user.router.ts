@@ -9,6 +9,7 @@ import * as UserService from "./user.service";
 import { Employee } from "./user.interface";
 
 import * as crypto from "crypto";
+import { rmSync } from "fs";
 
 /**
  * Router Definition
@@ -95,5 +96,19 @@ userRouter.put("/:id", async (req: Request, res: Response) => {
     }
   } catch {
     res.status(500).send("Error 500");
+  }
+});
+
+userRouter.get("/getbyname/:name", async (req: Request, res: Response) => {
+  const name = req.params.name;
+  try {
+    let employeeToReturn: Employee = UserService.findByName(name);
+
+    if (employeeToReturn) {
+      return res.status(200).send(employeeToReturn);
+    }
+    return res.status(404).send("User was not found");
+  } catch {
+    return res.status(500).send("Internal server error");
   }
 });

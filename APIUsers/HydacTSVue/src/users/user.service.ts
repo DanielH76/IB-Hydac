@@ -28,7 +28,6 @@ export function loadEmployees(): Employee[] {
       mood: values[3] as Mood,
     };
   }
-  console.log(employeesToReturn);
   return employeesToReturn;
 }
 
@@ -57,6 +56,15 @@ export const findAll = (): Employee[] => {
 export const find = (id: number): Employee => {
   let empToFind: Employee = employees.find((x) => x.id == id) as Employee;
   return empToFind;
+};
+
+export const findByName = (name: string): Employee => {
+  console.log(employees);
+  let employeeToReturn: Employee = employees.find(
+    (x) => x.name == name
+  ) as Employee;
+  console.log(employeeToReturn);
+  return employeeToReturn;
 };
 
 export function removeEmployee(id: number): boolean {
