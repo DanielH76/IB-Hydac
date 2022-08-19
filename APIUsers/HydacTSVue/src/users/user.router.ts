@@ -8,6 +8,8 @@ import * as UserService from "./user.service";
 
 import { Employee } from "./user.interface";
 
+import * as dbService from "./user.dbservice";
+
 import * as crypto from "crypto";
 import { rmSync } from "fs";
 
@@ -110,5 +112,14 @@ userRouter.get("/getbyname/:name", async (req: Request, res: Response) => {
     return res.status(404).send("User was not found");
   } catch {
     return res.status(500).send("Internal server error");
+  }
+});
+
+userRouter.get("/database/da/da", async (req: Request, res: Response) => {
+  try {
+    dbService.FindAll();
+    res.status(200).send("Check log");
+  } catch {
+    res.status(500).send("Internal server error");
   }
 });

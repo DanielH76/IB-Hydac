@@ -12,6 +12,7 @@ export interface Guest {
   id: number;
   name: string;
   employeeId: number;
+  isOnsite: boolean;
 }
 
 export type Mood = "Happy" | "Sad" | "Neutral" | "ANGRY";

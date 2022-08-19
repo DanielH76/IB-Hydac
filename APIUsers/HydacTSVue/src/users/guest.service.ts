@@ -14,11 +14,14 @@ export function loadGuests(): Guest[] {
 
   for (let i = 0; i < guestStrings.length; i++) {
     let values: string[] = guestStrings[i].split(",");
+    let stringValue: string = values[3];
+    let boolValue: boolean = /true/i.test(stringValue);
 
     guestsToReturn[i] = {
       id: parseInt(values[0]),
       name: values[1],
       employeeId: parseInt(values[2]),
+      isOnsite: boolValue,
     };
   }
 
@@ -50,10 +53,12 @@ export function create(newGuest: Guest): Guest {
   let idToCreate: string = "\n" + newGuest.id;
   let nameToCreate: string = "," + newGuest.name;
   let employeeIdToCreate: string = newGuest.employeeId.toString();
+  let isOnsiteToCreate: string = String(newGuest.isOnsite);
 
   let stringsJoined: string = idToCreate.concat(
     nameToCreate,
-    employeeIdToCreate
+    employeeIdToCreate,
+    isOnsiteToCreate
   );
 
   txtService.appendFile("guestStore.txt", stringsJoined);
@@ -90,6 +95,7 @@ export function updateGuest(newGuestValues: Guest, id: number): boolean {
 
   guestToUpdate.name = newGuestValues.name;
   guestToUpdate.employeeId = newGuestValues.employeeId;
+  guestToUpdate.isOnsite = newGuestValues.isOnsite;
 
   let index: number = tempGuests.indexOf(guestToUpdate);
   tempGuests.splice(index, 1, guestToUpdate);
@@ -99,4 +105,19 @@ export function updateGuest(newGuestValues: Guest, id: number): boolean {
   loadGuests();
 
   return true;
+}
+
+export function updateAbsence(id: number): boolean {
+  let guests: Guest[] = findAll();
+  let guestToUpdate: Guest = find(id);
+
+  guestToUpdate.isOnsite == true ? false : true;
+
+  let index: number = guests.indexOf(guestToUpdate);
+
+  guests.splice(index, 1, guestToUpdate);
+
+  loadGuests();
+
+  return guestToUpdate.isOnsite;
 }
