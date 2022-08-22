@@ -1,5 +1,3 @@
-1,test,true,ANGRY
-2,anielD,false,Happy
 3,nielDa,true,Sad
 4,Danielaaaa,true,Neutral
 5,elDani,false,ANGRY
@@ -15,4 +13,3 @@ NaN,Jens,false,Happy
 1660556287631,Jens,false,Happy
 1660556288279,Jens,false,Happy
 1660556288868,Jens,false,Happy
-1660556289518,Jens,false,Happy

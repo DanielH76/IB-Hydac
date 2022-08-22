@@ -120,3 +120,12 @@ guestRouter.get("/employee/:id", async (req: Request, res: Response) => {
     return res.status(500).send("Internal server error");
   }
 });
+guestRouter.put("/absence/:id", async (req: Request, res: Response) => {
+  const id: number = parseInt(req.params.id, 10);
+  try {
+    let absence: boolean = GuestService.updateAbsence(id);
+    return res.status(200).send(absence);
+  } catch {
+    return res.status(500).send("Internal server error");
+  }
+});

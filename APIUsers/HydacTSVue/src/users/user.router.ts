@@ -26,6 +26,9 @@ export const userRouter = express.Router();
 // GET EMPLOYEES
 
 userRouter.get("/", async (req: Request, res: Response) => {
+  let dateTest: Date = new Date();
+  dateTest.setHours(dateTest.getHours() + 2);
+  console.log(dateTest);
   try {
     const employees: Employee[] = UserService.findAll();
     res.status(200).send(employees);
@@ -87,6 +90,7 @@ userRouter.delete("/:id", async (req: Request, res: Response) => {
 userRouter.put("/:id", async (req: Request, res: Response) => {
   const id = parseInt(req.params.id, 10);
   let updatedEmployee = req.body;
+  updatedEmployee.id = id;
 
   try {
     let isUpdated: boolean = UserService.updateEmployee(updatedEmployee, id);

@@ -1,6 +1,7 @@
 import { readFileSync, writeFileSync, promises as fsPromises } from "fs";
 import { join } from "path";
 import { Employee, Guest } from "./user.interface";
+import { Meeting } from "./meeting.interface";
 
 /**
  * flags:
@@ -84,4 +85,29 @@ export function updateGuestFile(fileName: string, guestArray: Guest[]): string {
   }
   syncWriteFile(fileName, stringToWrite);
   return stringToWrite;
+}
+
+export function appendJsonFileMeeting(
+  fileName: string,
+  meetingToCreate: Meeting
+): string {
+  let jsonString: string = syncReadFile("meetingStore.json");
+
+  console.log(meetingToCreate);
+  let meetingsTotal: Meeting[] = JSON.parse(jsonString);
+  meetingsTotal.push(meetingToCreate);
+  let meetingToWrite: string = JSON.stringify(meetingsTotal);
+  syncWriteFile(fileName, meetingToWrite);
+
+  return meetingToWrite;
+}
+
+export function updateMeetingFileJson(
+  fileName: string,
+  meetingArray: Meeting[]
+): string {
+  let jsonString: string = JSON.stringify(meetingArray);
+  syncWriteFile(fileName, jsonString);
+
+  return jsonString;
 }

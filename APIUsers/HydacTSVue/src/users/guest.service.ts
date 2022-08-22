@@ -116,6 +116,7 @@ export function updateAbsence(id: number): boolean {
   let index: number = guests.indexOf(guestToUpdate);
 
   guests.splice(index, 1, guestToUpdate);
+  txtService.updateGuestFile("guestStore.txt", guests);
 
   loadGuests();
 
